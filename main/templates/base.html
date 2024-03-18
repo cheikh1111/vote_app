@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/base.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static',filename='imgs/favicon.ico')}}" type="image/x-icon">
+    <meta name="description" content="Made by cheikhsidiya55@gmail.com for Sara. feel free to contact me if you want a website being done">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <title>MR Vote</title>
+    {% block head %}{% endblock %}
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/" title="Page d'accueil">Page d'accueil</a></li>
+            {% if not logged %}
+            <li><a href="/login" title="Se connectez">Se connectez</a></li>
+            <li><a href="/register" title="S'inscrir">S'inscrir</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category,message in messages %}
+    {% if category == 'error'%}
+    <div class="message error">{{message|safe}}</div>
+    {% endif %}
+    {% if category == 'success'%}
+    <div class="message success">{{message|safe}}</div>
+    {% endif %}
+    {% if category == 'info'%}
+    <div class="message info">{{message|safe}}</div>
+    {% endif %}
+    {% endfor %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <footer>&copy;2024 cheikhsidiya55@gmail.com</footer>
+</body>
+</html>

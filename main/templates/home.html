@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{%block head%} 
+<link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}">
+{%endblock%}
+
+{%block body%}
+<div class="content">
+    <div class="stats">
+        <div>
+            <div>Nomber de voix: <span>{{total}}</span></div>
+        </div>
+        <div class="unem">
+            <div class="info">UNEM <span>{{unem}} %</span></div>
+            <span class="progress" style="width: {{unem}}%"></span>
+        </div>
+        <div class="ugem">
+            <div class="info">UGEM <span>{{ugem}} %</span></div>
+            <span class="progress" style="width: {{ugem}}%;"></span>
+        </div>
+
+        <div class="anem">
+            <div class="info">ANEM <span>{{anem}} %</span></div>
+            <span class="progress" style="width: {{anem}}%"></span>
+        </div>
+        <div class="snem">
+            <div class="info">SNEM <span>{{snem}} %</span></div>
+            <span class="progress" style="width: {{snem}}%"></span>
+        </div>
+
+
+        <div class="neutre">
+            <div class="info">Neutre<span>{{neutre}} %</span></div>
+            <span class="progress" style="width: {{neutre}}%"></span>
+        </div>
+
+    </div>
+    {% if logged and not voted %}
+    <div class="vote">
+        <span>Votez pour votre candidat:</span>
+        <form action="/submit-vote" method="post">
+            {{form.hidden_tag()}}
+            {{form.radio_field}}
+            {{form.submit}}
+        </form>
+    </div>
+
+    {% endif %}
+</div>
+{%endblock%}

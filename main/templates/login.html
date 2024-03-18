@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/login_register.css')}}">
+    <script src="{{url_for('static',filename='js/show_pass.js')}}"></script>
+{% endblock %}
+
+
+{% block body %}
+
+    <form action="" method="post">
+        {{form.hidden_tag()}}
+        
+        <div class="field">
+            {{form.registration_num.label}}
+            {{form.registration_num}}
+        </div>
+        
+        <div class="field">
+            {{form.password.label}}
+            <div class="password">
+                {{form.password}}
+                <span>montrer</span>
+            </div>
+        </div>
+        
+        <div>
+            {{form.submit}}
+        </div>
+    </form>
+{% endblock %}
