@@ -58,7 +58,7 @@ def home():
 
     if voted and request.url == request.host_url:
         flash(
-            f"Vous avez déja voté pour:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {user.vote[0].voted_for}",
+            f"Vous avez voté pour:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {user.vote[0].voted_for}",
             "info",
         )
 

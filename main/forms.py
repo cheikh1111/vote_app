@@ -67,7 +67,7 @@ class VoteForm(FlaskForm):
         ("UNEM", "UNEM"),
         ("SNEM", "SNEM"),
         ("ANEM", "ANEM"),
-        ("N", "Neutre"),
+        ("Neutre", "Neutre"),
     )
     radio_field = RadioField("Votez", choices=choices)
     submit = SubmitField("Votez")
