@@ -4,7 +4,7 @@ from flask import session, request
 from . import db
 
 cipher_suite = Fernet(Fernet.generate_key())
-candidates = ["UGEM", "UNEM", "SNEM", "ANEM", "N"]
+candidates = ["UGEM", "UNEM", "SNEM", "ANEM", "Neutre"]
 
 
 def encrypt(string: str) -> str:
@@ -33,17 +33,15 @@ def get_votes_percentage():
     if not votes:
         return 0, 0, 0, 0, 0, 0
 
-    get_percentage = (
-        lambda name: len([vote for vote in votes if vote.voted_for == name])
-        / total
-        * 100
+    get_percentage = lambda name: round(
+        len([vote for vote in votes if vote.voted_for == name]) / total * 100, 2
     )
     total = len(votes)
     ugem_percentage = get_percentage("UGEM")
     unem_percentage = get_percentage("UNEM")
     snem_percentage = get_percentage("SNEM")
     anem_percentage = get_percentage("ANEM")
-    neutre_percentage = get_percentage("N")
+    neutre_percentage = get_percentage("Neutre")
 
     return (
         total,
@@ -81,7 +79,7 @@ def is_logged_in():
     user_id_cookie = request.cookies.get("user_id", None)
     if user_id:
         user_id = int(decrypt(user_id))
-        user = User.query.get(user_id_cookie)
+        user = User.query.get(user_id)
         return user if getattr(user, "id", False) else False
 
     elif user_id_cookie:
