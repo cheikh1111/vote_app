@@ -63,8 +63,8 @@ class LoginForm(FlaskForm):
 
 class VoteForm(FlaskForm):
     choices = (
-        ("UGEM", "UGEM"),
         ("UNEM", "UNEM"),
+        ("UGEM", "UGEM"),
         ("SNEM", "SNEM"),
         ("ANEM", "ANEM"),
         ("Neutre", "Neutre"),
