@@ -64,9 +64,9 @@ class LoginForm(FlaskForm):
 class VoteForm(FlaskForm):
     choices = (
         ("UNEM", "UNEM"),
-        ("UGEM", "UGEM"),
         ("SNEM", "SNEM"),
         ("ANEM", "ANEM"),
+        ("UGEM", "UGEM"),
         ("Neutre", "Neutre"),
     )
     radio_field = RadioField("Votez", choices=choices)
