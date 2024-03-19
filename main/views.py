@@ -37,7 +37,8 @@ def home():
     if user_id := session.get("user_id", None):
         logged_in = True
         user = User.query.get(decrypt(user_id))
-        voted = user.voted
+        if user:
+            voted = user.voted
 
         # this indicates redirect
         if request.url != request.host_url:

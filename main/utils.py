@@ -57,13 +57,14 @@ def add_voice(
     voted_for: str, user_id: int
 ) -> bool:  # returns boolean indicating success or failure
     user = User.query.get(user_id)
-    if not user.voted and voted_for in candidates:
-        vote = Vote(voted_for=voted_for, user_id=user_id)
-        user.voted = True
-        db.session.add(vote)
-        db.session.commit()
-        db.session.close()
-        return True
+    if user:
+        if not user.voted and voted_for in candidates:
+            vote = Vote(voted_for=voted_for, user_id=user_id)
+            user.voted = True
+            db.session.add(vote)
+            db.session.commit()
+            db.session.close()
+            return True
 
     return False
 
