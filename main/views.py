@@ -25,6 +25,14 @@ from . import db
 views = Blueprint("views", __name__)
 
 
+@views.after_request  # Http Strict Transport Security (Forcing HTTPS)
+def add_hsts(response):
+    response.headers["Strict-Transport-Security"] = (
+        "max-age=31536000; includeSubDomains"  # 1 year max-age, including subdomains
+    )
+    return response
+
+
 @views.route("/")
 def home():
     form = VoteForm()
